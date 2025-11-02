@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>علي محمد الشاحذي - مدير أول التواصل</title>
+    <title id="page-title">بطاقة عمل ديناميكية: خالد علي محمد</title>
     
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -58,7 +58,7 @@
         /* Specific styling for the YOU logo box */
         .you-logo-container {
             width: 80px; 
-            height: 80px; 
+            height: 40px; 
             margin: 0 auto; 
             z-index: 20; 
             position: relative; 
@@ -103,157 +103,411 @@
              flex-shrink: 0;
         }
 
+        /* Form styling */
+        .input-label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.875rem;
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            margin-bottom: 1rem;
+            text-align: right;
+            direction: rtl; /* Force RTL input */
+        }
+        .ltr-input {
+            direction: ltr; /* Force LTR input for email/phone */
+            text-align: left;
+        }
+        /* Style for the file input */
+        input[type="file"] {
+            direction: ltr; /* Ensure LTR for file selector */
+            padding-left: 0.5rem;
+            text-align: left;
+        }
+        
+        /* Activate Button Style */
+        #activate-btn {
+            background-color: #000000;
+            color: #ffcc4e;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: background-color 0.15s;
+        }
+        #activate-btn:hover {
+            background-color: #1f2937;
+        }
     </style>
 </head>
-<body class="bg-gray-100 font-sans min-h-screen flex items-center justify-center p-4">
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col items-center justify-start p-4 space-y-6">
 
-    <!-- V-Card Container -->
-    <div id="vcard" class="bg-white vcard-shadow max-w-sm w-full mx-auto rounded-xl overflow-hidden">
-        
-        <!-- Header Section (Yellow Background with Curve) -->
-        <div class="bg-header-yellow text-gray-900 px-6 pt-8 pb-20 relative text-right">
-            <div class="flex items-start flex-row-reverse space-x-4">
-                
-                <!-- Profile Photo - NOW USING LOCAL FILE PATH -->
-                <div class="w-24 h-24 flex-shrink-0">
-                    <img src="my-photo.png"  
-                         alt="علي محمد الشاحذي" 
-                         onerror="this.onerror=null;this.src='https://placehold.co/96x96/ffcc4e/000000?text=Photo+Error';"
-                         class="w-full h-full object-cover rounded-xl shadow-md border-2 border-white"/>
-                </div>
-                
-                <!-- Name and Title -->
-                <div class="flex-grow mt-0">
-                    <h1 class="text-2xl font-extrabold" id="vcard-name">علي محمد الشاحذي</h1>
-                    <p class="text-gray-800 text-base mt-1 leading-tight" id="vcard-title">مدير أول التواصل</p>
-                    <p class="text-gray-800 text-base leading-tight" id="vcard-department">قطاع شؤون الشركة</p>
-                </div>
-            </div>
+    <!-- Container for both views -->
+    <div class="w-full max-w-sm mx-auto">
 
-            <!-- YOU Logo Container - NOW USING LOCAL FILE PATH -->
-            <div class="you-logo-container mt-8">
-                <img src="YOU Logo.png" 
-                     alt="YOU Logo"
-                     onerror="this.onerror=null;this.src='https://placehold.co/80x40/ffcc4e/000000?text=Logo+Error';"
-                     />
-            </div>
-
-            <!-- Custom Curve SVG -->
-            <svg class="header-curve-svg" viewBox="0 0 100 40" preserveAspectRatio="none">
-                <path d="M0,0 C25,40 75,40 100,0 L100,40 L0,40 Z" fill="currentColor"/>
-            </svg>
-        </div>
-
-        <!-- Contact Details Section (White Background) -->
-        <div class="p-6 pt-4 space-y-4">
+        <!-- Phase 1: Editor/Input Panel -->
+        <div id="editor-panel-wrapper" class="bg-white p-6 rounded-xl vcard-shadow mb-6">
+            <h2 class="text-xl font-bold mb-4 text-center text-gray-800 border-b pb-2">تعديل بيانات بطاقة العمل</h2>
             
-            <!-- Company & Location Section - Now fully RTL -->
-            <div class="space-y-3 text-right">
-                
-                <!-- Company Name with Icon -->
-                <div class="company-details-item">
-                    <!-- Lucide: Building Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-icon-color flex-shrink-0"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M10 12V8"/><path d="M14 12V8"/><path d="M10 16v-4"/><path d="M14 16v-4"/></svg>
-                    <p class="text-lg font-bold text-gray-800 flex-grow text-right" id="vcard-company">اليمنية العمانية المتحدة للاتصالات</p>
+            <div class="grid grid-cols-1 gap-x-4">
+                <!-- الاسم (Name) -->
+                <div>
+                    <label for="input-name" class="input-label">الاسم الكامل</label>
+                    <input type="text" id="input-name" class="input-field" placeholder="مثل: خالد علي" />
                 </div>
 
-                <!-- Location with Icon -->
-                <div class="company-details-item">
-                    <!-- Lucide: Map Pin Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 flex-shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                    <p class="text-base text-gray-700 flex-grow text-right" id="vcard-location">اليمن - صنعاء - حدة</p>
+                <!-- الصفة (Title) -->
+                <div>
+                    <label for="input-title" class="input-label">الصفة (المسمى الوظيفي)</label>
+                    <input type="text" id="input-title" class="input-field" placeholder="مثل: مهندس برمجيات" />
+                </div>
+
+                <!-- القطاع (Department) -->
+                <div>
+                    <label for="input-department" class="input-label">القطاع/القسم</label>
+                    <input type="text" id="input-department" class="input-field" placeholder="مثل: قطاع التكنولوجيا والابتكار" />
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-x-4">
+                <!-- رقم الهاتف (Phone) -->
+                <div>
+                    <label for="input-phone" class="input-label">رقم الهاتف (مع رمز الدولة)</label>
+                    <input type="tel" id="input-phone" class="input-field ltr-input" placeholder="مثل: +967777555123" />
+                </div>
+
+                <!-- الإيميل (Email) -->
+                <div>
+                    <label for="input-email" class="input-label">البريد الإلكتروني</label>
+                    <input type="email" id="input-email" class="input-field ltr-input" placeholder="مثل: khalid.ali@futuretech.com" />
                 </div>
             </div>
             
-            <hr class="border-gray-200">
-
-            <!-- Primary Contact Links (LTR for numbers/emails) -->
-            <div class="space-y-3">
-                
-                <!-- Phone -->
-                <a id="vcard-phone-link" href="tel:+967733111125" class="icon-link">
-                    <!-- Lucide: Phone Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-icon-color"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    <span class="ltr-text font-semibold text-gray-700" id="vcard-phone-text">+967 733111125</span>
-                </a>
-
-                <!-- Email -->
-                <a id="vcard-email-link" href="mailto:ashahidi@you.com.ye" class="icon-link">
-                    <!-- Lucide: Mail Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-icon-color"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    <span class="ltr-text font-semibold text-gray-700 truncate" id="vcard-email-text">ashahidi@you.com.ye</span>
-                </a>
-                
-                <!-- Website -->
-                <a id="vcard-website-link" href="https://www.you.com.ye" target="_blank" rel="noopener noreferrer" class="icon-link">
-                    <!-- Lucide: Link Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-icon-color"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                    <span class="ltr-text font-semibold text-gray-700 truncate" id="vcard-website-text">www.you.com.ye</span>
-                </a>
-                
+            <!-- رفع الصورة (Image Upload) -->
+            <div class="mt-2">
+                <label for="input-photo" class="input-label">صورة الملف الشخصي</label>
+                <input type="file" id="input-photo" class="input-field" accept="image/*" />
             </div>
-        </div>
-        
-        <!-- CTA Footer: Download Button (Black) -->
-        <div class="p-4 bg-cta-black text-center text-white font-bold text-lg">
-            <button id="downloadVcf" class="w-full h-full bg-transparent border-none text-white font-bold text-base cursor-pointer">
-                اضغط لحفظ الاسم في قائمة أسماء الهاتف
-            </button>
-            <p id="message-box" class="text-center mt-3 text-sm text-red-300 opacity-0 transition-opacity duration-300">
-                <!-- Status messages here -->
+
+            <p class="text-sm text-center text-gray-500 mt-2 border-t pt-2">
+                **الشركة، الموقع، والموقع الإلكتروني ثابتة في الكود.**
             </p>
+
+            <!-- Activation Button -->
+            <div class="text-center mt-6">
+                <button id="activate-btn" class="w-full">
+                    تفعيل البطاقة الرقمية
+                </button>
+            </div>
         </div>
 
+        <!-- Phase 2: V-Card Display (hidden by default) -->
+        <div id="vcard-display-wrapper" class="hidden">
+            <!-- V-Card Container -->
+            <div id="vcard" class="bg-white vcard-shadow max-w-sm w-full mx-auto rounded-xl overflow-hidden">
+                
+                <!-- Header Section (Yellow Background with Curve) -->
+                <div class="bg-header-yellow text-gray-900 px-6 pt-8 pb-20 relative text-right">
+                    <div class="flex items-start flex-row-reverse space-x-4">
+                        
+                        <!-- Profile Photo -->
+                        <div class="w-24 h-24 flex-shrink-0">
+                            <img id="vcard-photo"
+                                src="my-photo.png"  
+                                alt="صورة شخصية" 
+                                onerror="this.onerror=null;this.src='https://placehold.co/96x96/ffcc4e/000000?text=صورة';"
+                                class="w-full h-full object-cover rounded-xl shadow-md border-2 border-white"/>
+                        </div>
+                        
+                        <!-- Name and Title -->
+                        <div class="flex-grow mt-0">
+                            <h1 class="text-2xl font-extrabold" id="vcard-name"></h1>
+                            <p class="text-gray-800 text-base mt-1 leading-tight" id="vcard-title"></p>
+                            <p class="text-gray-800 text-base leading-tight" id="vcard-department"></p>
+                        </div>
+                    </div>
+
+                    <!-- YOU Logo Container - تغيير مسار الشعار هنا إذا لزم الأمر -->
+                    <div class="you-logo-container mt-8">
+                        <img src="YOU Logo.png" 
+                            alt="شعار الشركة"
+                            onerror="this.onerror=null;this.src='https://placehold.co/80x40/ffcc4e/000000?text=شعار';"
+                            />
+                    </div>
+
+                    <!-- Custom Curve SVG -->
+                    <svg class="header-curve-svg" viewBox="0 0 100 40" preserveAspectRatio="none">
+                        <path d="M0,0 C25,40 75,40 100,0 L100,40 L0,40 Z" fill="currentColor"/>
+                    </svg>
+                </div>
+
+                <!-- Contact Details Section (White Background) -->
+                <div class="p-6 pt-4 space-y-4">
+                    
+                    <!-- Company & Location Section - Static Data -->
+                    <div class="space-y-3 text-right">
+                        
+                        <!-- Company Name with Icon -->
+                        <div class="company-details-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-icon-color flex-shrink-0"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"/><path d="M10 12V8"/><path d="M14 12V8"/><path d="M10 16v-4"/><path d="M14 16v-4"/></svg>
+                            <p class="text-lg font-bold text-gray-800 flex-grow text-right" id="vcard-company">شركة تقنية المستقبل</p>
+                        </div>
+
+                        <!-- Location with Icon -->
+                        <div class="company-details-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 flex-shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <p class="text-base text-gray-700 flex-grow text-right" id="vcard-location">اليمن - عدن - المعلا</p>
+                        </div>
+                    </div>
+                    
+                    <hr class="border-gray-200">
+
+                    <!-- Primary Contact Links (Dynamic Data) -->
+                    <div class="space-y-3">
+                        
+                        <!-- Phone -->
+                        <a id="vcard-phone-link" href="#" class="icon-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-icon-color"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <span class="ltr-text font-semibold text-gray-700" id="vcard-phone-text"></span>
+                        </a>
+
+                        <!-- Email -->
+                        <a id="vcard-email-link" href="#" class="icon-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-icon-color"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                            <span class="ltr-text font-semibold text-gray-700 truncate" id="vcard-email-text"></span>
+                        </a>
+                        
+                        <!-- Website -->
+                        <a id="vcard-website-link" href="https://www.futuretech.com" target="_blank" rel="noopener noreferrer" class="icon-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-icon-color"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                            <span class="ltr-text font-semibold text-gray-700 truncate" id="vcard-website-text">www.futuretech.com</span>
+                        </a>
+                        
+                    </div>
+                    
+                    <div class="text-center pt-4">
+                        <button id="edit-btn" class="text-sm text-gray-500 hover:text-gray-700 transition duration-150">
+                            تعديل البيانات
+                        </button>
+                    </div>
+
+                </div>
+                
+                <!-- CTA Footer: Download Button (Black) -->
+                <div class="p-4 bg-cta-black text-center text-white font-bold text-lg">
+                    <button id="downloadVcf" class="w-full h-full bg-transparent border-none text-white font-bold text-base cursor-pointer">
+                        اضغط لحفظ الاسم في قائمة أسماء الهاتف
+                    </button>
+                    <p id="message-box" class="text-center mt-3 text-sm text-red-300 opacity-0 transition-opacity duration-300">
+                        <!-- Status messages here -->
+                    </p>
+                </div>
+
+            </div>
+        </div>
     </div>
 
+
     <script>
-        // --- VCF Download Logic (same as before) ---
-        const contactData = {
-            name: "علي محمد الشاحذي",
-            title: "مدير أول التواصل",
-            department: "قطاع شؤون الشركة",
-            company: "اليمنية العمانية المتحدة للاتصالات",
-            phone: "+967733111125",
-            email: "ashahidi@you.com.ye",
-            website: "https://www.you.com.ye",
-            address: "اليمن - صنعاء - حدة",
+        // البيانات الأولية التي سيتم استخدامها لملء النموذج والبطاقة عند التحميل
+        const initialData = {
+            name: "خالد علي محمد", // updated
+            title: "مدير أول الشبكات", // updated
+            department: "قطاع الشبكات", // updated
+            phone: "+96773×××××××", // updated
+            email: "×××××××@you.com.ye", // updated
+            photo: "my-photo.png", 
+            photoBase64: null,     
+            photoMimeType: null,   
+            
+            // البيانات الثابتة (لا يتم تغييرها من خلال النموذج)
+            company: "شركة تقنية المستقبل", 
+            address: "اليمن - عدن - المعلا", 
+            website: "https://www.futuretech.com",
         };
+
+        let currentContactData = { ...initialData }; 
+
+        // العناصر المرئية
+        const editorWrapper = document.getElementById('editor-panel-wrapper');
+        const vcardWrapper = document.getElementById('vcard-display-wrapper');
+        const vcardPhoto = document.getElementById('vcard-photo');
+        const nameDisplay = document.getElementById('vcard-name');
+        const titleDisplay = document.getElementById('vcard-title');
+        const departmentDisplay = document.getElementById('vcard-department');
+        const phoneLink = document.getElementById('vcard-phone-link');
+        const phoneText = document.getElementById('vcard-phone-text');
+        const emailLink = document.getElementById('vcard-email-link');
+        const emailText = document.getElementById('vcard-email-text');
+        const pageTitle = document.getElementById('page-title');
+        
+        // عناصر الإدخال
+        const inputName = document.getElementById('input-name');
+        const inputTitle = document.getElementById('input-title');
+        const inputDepartment = document.getElementById('input-department');
+        const inputPhone = document.getElementById('input-phone');
+        const inputEmail = document.getElementById('input-email');
+        const inputPhoto = document.getElementById('input-photo'); 
         
         const messageBox = document.getElementById('message-box');
+
+        // 1. وظيفة تبديل العرض بين المحرر والبطاقة
+        function toggleView(showEditor) {
+            if (showEditor) {
+                editorWrapper.classList.remove('hidden');
+                vcardWrapper.classList.add('hidden');
+            } else {
+                editorWrapper.classList.add('hidden');
+                vcardWrapper.classList.remove('hidden');
+            }
+        }
+        
+        // 2. تحديث واجهة المستخدم (البطاقة)
+        function updateVCard() {
+            // تحديث العرض المرئي
+            nameDisplay.textContent = currentContactData.name;
+            titleDisplay.textContent = currentContactData.title;
+            departmentDisplay.textContent = currentContactData.department;
+            phoneText.textContent = currentContactData.phone;
+            emailText.textContent = currentContactData.email;
+            pageTitle.textContent = `${currentContactData.name} - ${currentContactData.title}`;
+
+            // تحديث رابط الصورة
+            if (currentContactData.photoBase64) {
+                vcardPhoto.src = currentContactData.photoBase64;
+            } else {
+                vcardPhoto.src = initialData.photo; // العودة للمسار الافتراضي إذا لم يتم رفع شيء
+            }
+
+            // تحديث روابط الاتصال
+            phoneLink.href = `tel:${currentContactData.phone.replace(/\s/g, '')}`; 
+            emailLink.href = `mailto:${currentContactData.email}`;
+            
+            // تحديث رابط الموقع الثابت (لا يتغير من الإدخال)
+            document.getElementById('vcard-website-text').textContent = currentContactData.website.replace('https://', '');
+        }
+
+        // 3. معالجة التغييرات من النموذج (النصوص) - يتم التحديث في كائن البيانات فقط
+        function handleInputChange() {
+            currentContactData.name = inputName.value;
+            currentContactData.title = inputTitle.value;
+            currentContactData.department = inputDepartment.value;
+            currentContactData.phone = inputPhone.value;
+            currentContactData.email = inputEmail.value;
+        }
+        
+        // 4. معالجة رفع الصورة
+        function handlePhotoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const dataUrl = e.target.result;
+                    currentContactData.photoBase64 = dataUrl;
+                    currentContactData.photoMimeType = file.type; 
+                    showMessage("تم تحميل الصورة بنجاح. اضغط تفعيل للمشاهدة.", "text-green-500");
+                };
+                reader.readAsDataURL(file);
+            } else {
+                currentContactData.photoBase64 = null;
+                currentContactData.photoMimeType = null;
+            }
+        }
+        
+        // 5. وظيفة "تفعيل" للانتقال إلى عرض البطاقة
+        function activateVCard() {
+            // تحديث البطاقة بناءً على آخر الإدخالات
+            updateVCard(); 
+            // إخفاء المحرر وإظهار البطاقة
+            toggleView(false); 
+        }
+
+        // 6. تهيئة التطبيق عند التحميل
+        function initializeApp() {
+            // ملء حقول الإدخال بالبيانات الأولية
+            inputName.value = initialData.name;
+            inputTitle.value = initialData.title;
+            inputDepartment.value = initialData.department;
+            inputPhone.value = initialData.phone;
+            inputEmail.value = initialData.email;
+            
+            // تحديث البطاقة بالبيانات الأولية في الخلفية
+            handleInputChange();
+            updateVCard(); 
+
+            // ربط حقول الإدخال بوظيفة التحديث الفوري للبيانات
+            inputName.addEventListener('input', handleInputChange);
+            inputTitle.addEventListener('input', handleInputChange);
+            inputDepartment.addEventListener('input', handleInputChange);
+            inputPhone.addEventListener('input', handleInputChange);
+            inputEmail.addEventListener('input', handleInputChange);
+            inputPhoto.addEventListener('change', handlePhotoUpload); 
+
+            // ربط الأزرار بالوظائف
+            document.getElementById('activate-btn').addEventListener('click', activateVCard);
+            document.getElementById('edit-btn').addEventListener('click', () => toggleView(true));
+            document.getElementById('downloadVcf').addEventListener('click', downloadVcf);
+
+            // البداية دائماً من واجهة التحرير
+            toggleView(true);
+        }
+
+        // --- وظائف تحميل ملف VCF ---
 
         function clean(value) {
             return (value || "").replace(/\n/g, "\\n").trim();
         }
 
         function downloadVcf() {
+            if (!currentContactData.name || !currentContactData.phone) {
+                 showMessage("الرجاء إدخال الاسم ورقم الهاتف على الأقل.", "text-red-500");
+                 return;
+            }
+
             try {
-                const vcfContent = `BEGIN:VCARD
+                const fileName = `${clean(currentContactData.name).replace(/\s+/g, '_')}_Contact.vcf`;
+                
+                let vcfContent = `BEGIN:VCARD
 VERSION:3.0
-N:${clean(contactData.name)}
-FN:${clean(contactData.name)}
-ORG:${clean(contactData.company)}
-TITLE:${clean(contactData.title)} (${clean(contactData.department)})
-TEL;TYPE=WORK,VOICE:${clean(contactData.phone)}
-EMAIL;TYPE=PREF,INTERNET:${clean(contactData.email)}
-URL:${clean(contactData.website)}
-ADR;TYPE=WORK:;;;${clean(contactData.address)};;;
+N:${clean(currentContactData.name)}
+FN:${clean(currentContactData.name)}
+ORG:${clean(currentContactData.company)}
+TITLE:${clean(currentContactData.title)} (${clean(currentContactData.department)})
+`;
+                // إضافة الصورة إذا كانت متوفرة
+                if (currentContactData.photoBase64 && currentContactData.photoMimeType) {
+                    const photoData = currentContactData.photoBase64.split(',')[1];
+                    const photoType = currentContactData.photoMimeType.split('/')[1].toUpperCase();
+
+                    vcfContent += `PHOTO;TYPE=${photoType};ENCODING=B:${photoData}\n`;
+                }
+
+                vcfContent += `TEL;TYPE=WORK,VOICE:${clean(currentContactData.phone)}
+EMAIL;TYPE=PREF,INTERNET:${clean(currentContactData.email)}
+URL:${clean(currentContactData.website)}
+ADR;TYPE=WORK:;;;${clean(currentContactData.address)};;;
 END:VCARD`;
 
                 const blob = new Blob([vcfContent], { type: 'text/vcard;charset=utf-8' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `Ali_Alshahidi_Contact.vcf`; 
+                a.download = fileName; 
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
                 
-                showMessage("تم تحميل بطاقة الاتصال بنجاح!", "text-green-300");
+                showMessage("تم تحميل بطاقة الاتصال بنجاح!", "text-green-500");
 
             } catch (error) {
                 console.error("VCF Download Error:", error);
-                showMessage("فشل التحميل. يرجى مراجعة سجل الأخطاء (Console).", "text-red-300");
+                showMessage("فشل التحميل. يرجى مراجعة سجل الأخطاء (Console).", "text-red-500");
             }
         }
         
@@ -269,7 +523,8 @@ END:VCARD`;
             }, 3000);
         }
 
-        document.getElementById('downloadVcf').addEventListener('click', downloadVcf);
+        // تشغيل التهيئة عند تحميل الصفحة
+        window.onload = initializeApp;
 
     </script>
 </body>
